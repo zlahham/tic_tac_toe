@@ -6,6 +6,10 @@ module TicTacToe
       @grid = options.fetch(:grid, grid_shape)
     end
 
+    def coords_cell(x,y)
+      grid[y][x]
+    end
+
     private
 
     def grid_shape

@@ -1,19 +1,21 @@
 module TicTacToe
   describe Board do
-    subject     { Board.new(grid: 'grid') }
-    let(:board) { Board.new }
+    let(:board_1)       { Board.new(grid: 'grid') }
+    let(:board_2)       { Board.new(grid: grid) }
+    let(:default_board) { Board.new }
+    let(:grid)          { [["", "O", ""], ["", "", "X"], ["", "", "X"]] }
 
     context '#initialize' do
       it 'initializes the board with a grid' do
-        expect { subject }.not_to raise_error
+        expect { board_1 }.not_to raise_error
       end
 
       it 'default grid has 3 arrays' do
-        expect(board.grid.length).to eq 3
+        expect(default_board.grid.length).to eq 3
       end
 
       it 'has 3 elements in each sub array' do
-        board.grid.each do |row|
+        default_board.grid.each do |row|
           expect(row.length).to eq 3
         end
       end
@@ -21,7 +23,13 @@ module TicTacToe
 
     context '#grid' do
       it 'outputs the grid' do
-        expect(subject.grid).to eq 'grid'
+        expect(board_1.grid).to eq 'grid'
+      end
+    end
+
+    context '#coords_cell' do
+      it 'returns the coords of the cell' do
+        expect(board_2.coords_cell(1,0)).to eq 'O'
       end
     end
   end
