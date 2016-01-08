@@ -27,6 +27,11 @@ module TicTacToe
       human_move_to_coord(human_move)
     end
 
+    def game_over_message
+      return "#{current_player.name} won!" if board.game_over == :winner
+      return "The game ended in a tie" if board.game_over == :draw
+    end
+
     private
 
     def human_move_to_coord(human_move)
