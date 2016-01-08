@@ -1,5 +1,7 @@
-describe Board do
-  context "#initialize" do
+module TicTacToe
+  describe Board do
+    context "#initialize" do
 
+    end
   end
 end
