@@ -33,10 +33,24 @@ module TicTacToe
       end
     end
 
-    context "#player_move" do
+    context "#ask_for_player_move" do
       it "asks the player to make a move" do
         allow(game).to receive(:current_player) { player_1}
-        expect(game.player_move).to eq "Zaid: Enter a number between 1 and 9 to make your move"
+        expect(game.ask_for_player_move).to eq "Zaid: Enter a number between 1 and 9 to make your move"
+      end
+    end
+
+    context "#get_move" do
+      context 'converts all moves to correct coords' do
+        it { expect(game.get_move("1")).to eq [0, 0] }
+        it { expect(game.get_move("2")).to eq [1, 0] }
+        it { expect(game.get_move("3")).to eq [2, 0] }
+        it { expect(game.get_move("4")).to eq [0, 1] }
+        it { expect(game.get_move("5")).to eq [1, 1] }
+        it { expect(game.get_move("6")).to eq [2, 1] }
+        it { expect(game.get_move("7")).to eq [0, 2] }
+        it { expect(game.get_move("8")).to eq [1, 2] }
+        it { expect(game.get_move("9")).to eq [2, 2] }
       end
     end
   end
