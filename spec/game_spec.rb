@@ -32,5 +32,12 @@ module TicTacToe
         expect(game.other_player).to eq current_player
       end
     end
+
+    context "#player_move" do
+      it "asks the player to make a move" do
+        allow(game).to receive(:current_player) { player_1}
+        expect(game.player_move).to eq "Zaid: Enter a number between 1 and 9 to make your move"
+      end
+    end
   end
 end
