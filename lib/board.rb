@@ -10,15 +10,23 @@ module TicTacToe
       grid[y][x]
     end
 
-    def set_cell(x,y,value)
-      x_o_checker(value)
-      coords_cell(x,y).replace(value)
+    def set_cell(x,y,input)
+      # x_o_checker(value)
+      # coords_cell(x,y).replace(value)
+
+      coords_cell(x, y).value = input
     end
 
     def game_over
       return :winner if winner?
       return :draw   if draw?
       false
+    end
+
+    def formatted_grid
+      grid.each do |row|
+        puts row.map { |cell| cell.value.empty? ? "_" : cell.value }.join("\t")
+      end
     end
 
     private
@@ -42,9 +50,9 @@ module TicTacToe
       # puts "\nIt is now your turn!\n"
     end
 
-    def x_o_checker(input)
-      raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
-    end
+    # def x_o_checker(input)
+    #   raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
+    # end
 
     def draw?
       grid.flatten.map { |cell| cell.value }.none_empty?

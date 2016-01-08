@@ -32,6 +32,25 @@ module TicTacToe
       return "The game ended in a tie" if board.game_over == :draw
     end
 
+    def play
+      puts "#{current_player.name} has randomly been selected as the first player"
+      puts
+      while true
+        board.formatted_grid
+        puts ""
+        puts ask_for_player_move
+        x, y = get_move
+        board.set_cell(x, y, current_player.weapon)
+        if board.game_over
+          puts game_over_message
+          board.formatted_grid
+          return
+        else
+          change_players
+        end
+      end
+    end
+
     private
 
     def human_move_to_coord(human_move)
