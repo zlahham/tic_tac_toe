@@ -51,7 +51,28 @@ module TicTacToe
     end
 
     def winner?
+      winning_positions.each do |winning_position|
+        next if winning_position_values(winning_position).all_empty?
+        return true if winning_position_values(winning_position).all_same?
+      end
+      false
+    end
+
+    def winning_position_values(winning_position)
+      winning_position.map { |cell| cell.value }
+    end
+
+    def winning_positions
+      grid + # rows
+      grid.transpose + # columns
+      diagonals # two diagonals
+    end
+
+    def diagonals
+      [
+        [coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
+        [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)]
+      ]
     end
   end
-
 end
