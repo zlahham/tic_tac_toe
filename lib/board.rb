@@ -11,7 +11,7 @@ module TicTacToe
     end
 
     def set_cell(x,y,input)
-      x_o_checker(input)
+      # x_o_checker(input)
       coords_cell(x, y).value = input
     end
 
@@ -58,9 +58,9 @@ module TicTacToe
         [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)] ]
     end
 
-    def x_o_checker(input)
-      raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
-    end
+    # def x_o_checker(input)
+    #   raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
+    # end
 
     def show_user_possibilities
       puts

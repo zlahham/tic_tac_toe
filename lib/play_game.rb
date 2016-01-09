@@ -7,14 +7,19 @@ puts "\nPlease choose a game mode:\n1: Human vs Human\n2: Human vs Computer\n3: 
 @game_mode = gets.chomp.to_i
 
 if @game_mode == 1
-  puts "\nPlease enter the name for Player 1"
-  @name1 = gets.chomp
-  puts "\nPlease enter the name for Player 2"
-  @name2 = gets.chomp
+  while true
+    puts "\nPlease enter the name for Player 1"
+    @name1 = gets.chomp
+    puts "\nPlease enter the name for Player 2"
+    @name2 = gets.chomp
 
-  player_1 = TicTacToe::Player.new({name: @name1, weapon: "X", })
-  player_2 = TicTacToe::Player.new({name: @name2, weapon: "0", })
-  players = [player_1, player_2]
+    player_1 = TicTacToe::Player.new({name: @name1, weapon: "X", })
+    player_2 = TicTacToe::Player.new({name: @name2, weapon: "0", })
+    players = [player_1, player_2]
 
-  TicTacToe::Game.new(players).play
+    TicTacToe::Game.new(players).play
+    puts "\nWould you like to play again? \nPlease answer with Yn"
+    play_again = gets.chomp.downcase
+    break if play_again == "n"
+  end
 end

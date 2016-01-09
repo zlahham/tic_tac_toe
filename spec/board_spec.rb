@@ -38,7 +38,7 @@ module TicTacToe
     end
 
     context '#set_cell' do
-      it 'only accepts X or O' do
+      xit 'only accepts X or O' do
         expect{ board_2.set_cell(0,0,'jelly') }.to raise_error 'Please use X or O'
       end
       it 'places the new cell value' do

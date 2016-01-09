@@ -24,7 +24,6 @@ module TicTacToe
     end
 
     def get_move(human_move = gets.chomp)
-      # Check if taken
       human_move_to_coord(integer_checker(human_move))
     end
 
@@ -41,11 +40,13 @@ module TicTacToe
         puts
         puts ask_for_player_move
         x, y = get_move
+
         board.set_cell(x, y, current_player.weapon)
         if board.game_over
           puts game_over_message
-          board.formatted_grid
-          play
+          # board.formatted_grid
+          # play
+          return
         else
           change_players
         end
@@ -67,13 +68,23 @@ module TicTacToe
       input
     end
 
+    def check_cell_occupied(input)
+      while true
+        break unless board.coords_cell(input[0], input[1]).value.empty?
+        puts messages(5)
+        input = human_move_to_coord(gets.chomp)
+      end
+      input
+    end
+
     def messages(num)
       msgs = [
         "#{current_player.name}: Enter a number between 1 and 9 to make your move",
         "\n#{current_player.name} won!",
         "\nThe game ended in a tie",
         "\n#{current_player.name} has randomly been selected as the first player",
-        "Please use the numbers 1-9"
+        "Please use the numbers 1-9",
+        "\n This cell is already occupied\n"
       ]
       msgs[num]
     end
