@@ -20,6 +20,6 @@ if @game_mode == 1
     TicTacToe::Game.new(players).play
     puts "\nWould you like to play again? \nPlease answer with Yn"
     play_again = gets.chomp.downcase
-    break if play_again == "n"
+    break unless play_again == "n" || play_again == "no"
   end
 end

@@ -39,13 +39,12 @@ module TicTacToe
         board.formatted_grid
         puts
         puts ask_for_player_move
-        x, y = get_move
-
+        a, b = get_move
+        x, y = check_cell_occupied(a, b)
         board.set_cell(x, y, current_player.weapon)
         if board.game_over
           puts game_over_message
-          # board.formatted_grid
-          # play
+          board.formatted_grid
           return
         else
           change_players
@@ -68,13 +67,13 @@ module TicTacToe
       input
     end
 
-    def check_cell_occupied(input)
+    def check_cell_occupied(x, y)
       while true
-        break unless board.coords_cell(input[0], input[1]).value.empty?
+        break if board.coords_cell(x, y).value.empty?
         puts messages(5)
-        input = human_move_to_coord(gets.chomp)
+        x, y = human_move_to_coord(gets.chomp)
       end
-      input
+      [x, y]
     end
 
     def messages(num)
