@@ -31,21 +31,6 @@ module TicTacToe
 
     def grid_shape
       Array.new(3) { Array.new(3) { Cell.new } }
-
-      # board_layout = Array.new(3, Cell.new ).map{|row| Array.new(3, Cell.new)}
-      # board_layout = Array.new(3) { Array.new(3) { Cell.new.value } }
-      # row_label = ["0", "1", "2"]
-      # column_label = ["A", "B", "C"]
-      # print "\t"
-      # print row_label.join("\t")
-      # puts
-      # board_layout.each_with_index do |row, i|
-      #   print column_label[i]
-      #   print "\t"
-      #   print row.join("\t")
-      #   puts
-      # end
-      # puts "\nIt is now your turn!\n"
     end
 
     def draw?
@@ -69,14 +54,22 @@ module TicTacToe
     end
 
     def diagonals
-      [
-        [coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
-        [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)]
-      ]
+      [ [coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
+        [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)] ]
     end
 
     def x_o_checker(input)
       raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
+    end
+
+    def show_user_possibilities
+      puts
+      puts " 1 | 2 | 3 "
+      puts "-----------"
+      puts " 4 | 5 | 6 "
+      puts "-----------"
+      puts " 7 | 8 | 9 "
+      puts
     end
   end
 end

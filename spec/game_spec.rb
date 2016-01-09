@@ -55,7 +55,15 @@ module TicTacToe
 
       it "does not accept input outside the range 1-9" do
         allow(game).to receive(:get_move) { "a" }
-        expect(game.get_move("a")).to eq 'a'
+        expect(game.get_move("a")).to eq "a"
+      end
+
+      xit "does not allow player to place choice in an occupied cell" do
+        current_player = game.current_player
+        game.get_move(1)
+        game.change_players
+        expect { game.get_move(1) }.not_to raise_error
+        expect(game.other_player).to eq current_player
       end
     end
 

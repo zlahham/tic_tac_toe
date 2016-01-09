@@ -20,24 +20,25 @@ module TicTacToe
     end
 
     def ask_for_player_move
-      "#{current_player.name}: Enter a number between 1 and 9 to make your move"
+      messages(0)
     end
 
     def get_move(human_move = gets.chomp)
+      # Check if taken
       human_move_to_coord(integer_checker(human_move))
     end
 
     def game_over_message
-      return "\n#{current_player.name} won!" if board.game_over == :winner
-      return "\nThe game ended in a tie" if board.game_over == :draw
+      return messages(1) if board.game_over == :winner
+      return messages(2) if board.game_over == :draw
     end
 
     def play
-      puts "\n#{current_player.name} has randomly been selected as the first player"
+      puts messages(3)
       puts
       while true
         board.formatted_grid
-        puts ""
+        puts
         puts ask_for_player_move
         x, y = get_move
         board.set_cell(x, y, current_player.weapon)
@@ -60,10 +61,21 @@ module TicTacToe
     def integer_checker(input)
       while true
         break if (1..9).include?(input.to_i)
-        puts 'Please use the numbers 1-9'
+        puts messages(4)
         input = gets.chomp
       end
       input
+    end
+
+    def messages(num)
+      msgs = [
+        "#{current_player.name}: Enter a number between 1 and 9 to make your move",
+        "\n#{current_player.name} won!",
+        "\nThe game ended in a tie",
+        "\n#{current_player.name} has randomly been selected as the first player",
+        "Please use the numbers 1-9"
+      ]
+      msgs[num]
     end
   end
 end
