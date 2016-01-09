@@ -18,5 +18,3 @@ if @game_mode == 1
 
   TicTacToe::Game.new(players).play
 end
-
-# Enter names if human players

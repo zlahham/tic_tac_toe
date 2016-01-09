@@ -52,19 +52,24 @@ module TicTacToe
         it { expect(game.get_move("8")).to eq [1, 2] }
         it { expect(game.get_move("9")).to eq [2, 2] }
       end
+
+      it "does not accept input outside the range 1-9" do
+        allow(game).to receive(:get_move) { "a" }
+        expect(game.get_move("a")).to eq 'a'
+      end
     end
 
     context "#game_over_message" do
       it "if there is a winner" do
         allow(game).to receive(:current_player) { player_1 }
         allow(game.board).to receive(:game_over) { :winner }
-        expect(game.game_over_message).to eq "Zaid won!"
+        expect(game.game_over_message).to eq "\nZaid won!"
       end
 
       it "if there is a draw" do
         allow(game).to receive(:current_player) { player_1 }
         allow(game.board).to receive(:game_over) { :draw }
-        expect(game.game_over_message).to eq "The game ended in a tie"
+        expect(game.game_over_message).to eq "\nThe game ended in a tie"
       end
     end
   end

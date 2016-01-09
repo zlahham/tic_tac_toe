@@ -24,7 +24,6 @@ module TicTacToe
     end
 
     def get_move(human_move = gets.chomp)
-      # int_input = integer_checker(human_move)
       human_move_to_coord(integer_checker(human_move))
     end
 
