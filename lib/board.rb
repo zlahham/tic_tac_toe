@@ -11,9 +11,6 @@ module TicTacToe
     end
 
     def set_cell(x,y,input)
-      # x_o_checker(value)
-      # coords_cell(x,y).replace(value)
-
       coords_cell(x, y).value = input
     end
 
@@ -50,10 +47,6 @@ module TicTacToe
       # puts "\nIt is now your turn!\n"
     end
 
-    # def x_o_checker(input)
-    #   raise 'Please use X or O' unless input.upcase == 'X' || input.upcase == 'O'
-    # end
-
     def draw?
       grid.flatten.map { |cell| cell.value }.none_empty?
     end
@@ -71,9 +64,7 @@ module TicTacToe
     end
 
     def winning_positions
-      grid + # rows
-      grid.transpose + # columns
-      diagonals # two diagonals
+      grid + grid.transpose + diagonals
     end
 
     def diagonals
