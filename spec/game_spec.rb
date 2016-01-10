@@ -34,7 +34,8 @@ module TicTacToe
     context "#ask_for_player_move" do
       it "asks the player to make a move" do
         allow(game).to receive(:current_player) { player_1}
-        expect(game.ask_for_player_move).to eq "Zaid: Enter a number between 1 and 9 to make your move"
+        expect(game.ask_for_player_move).to eq "#{"Zaid".colorize(:blue)}: Enter a number between 1 and 9 to make your move"
+
       end
     end
 
@@ -69,13 +70,13 @@ module TicTacToe
       it "if there is a winner" do
         allow(game).to receive(:current_player) { player_1 }
         allow(game.board).to receive(:game_over) { :winner }
-        expect(game.game_over_message).to eq "\nZaid won!"
+        expect(game.game_over_message).to eq "\nZaid won! Woohoooo!!!\n".colorize(:red ).colorize( background: :light_blue)
       end
 
       it "if there is a draw" do
         allow(game).to receive(:current_player) { player_1 }
         allow(game.board).to receive(:game_over) { :draw }
-        expect(game.game_over_message).to eq "\nThe game ended in a tie"
+        expect(game.game_over_message).to eq "\nThe game ended in a tie".colorize(:yellow)
       end
     end
 
