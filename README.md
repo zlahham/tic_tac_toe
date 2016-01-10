@@ -17,16 +17,25 @@ I built this game with the following restrictions:
 - Make the Command line version look nicer
 
 ###Setup
+```
+git clone git@github.com:zlahham/tic_tac_toe.git
 
-`git clone git@github.com:zlahham/tic_tac_toe.git`
-`cd tic_tac_toe`
-`bundle`
-`ruby lib/play_game.rb`
+cd tic_tac_toe
 
-Enjoy the Game!
+bundle
+
+ruby lib/play_game.rb
+```
+**Enjoy the Game!**
 
 ###Testing
-`git clone git@github.com:zlahham/tic_tac_toe.git`
-`cd tic_tac_toe`
-`bundle`
-`rspec`
+```
+git clone git@github.com:zlahham/tic_tac_toe.git
+
+cd tic_tac_toe
+
+bundle
+
+rspec
+
+```
