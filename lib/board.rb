@@ -21,17 +21,18 @@ module TicTacToe
       false
     end
 
-    def formatted_grid
 
-      grid.each do |row|
-        puts row.map { |cell| cell.value.empty? ? "_".colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
-      end
-    end
 
     private
 
     def grid_shape
       Array.new(3) { Array.new(3) { Cell.new } }
+    end
+
+    def formatted_grid
+      grid.each do |row|
+        puts row.map { |cell| cell.value.empty? ? "_".colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
+      end
     end
 
     def draw?
