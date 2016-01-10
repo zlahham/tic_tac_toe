@@ -132,5 +132,22 @@ module TicTacToe
         expect(default_board.game_over).to be false
       end
     end
+
+    context "#show_user_possibilities" do
+      it 'shows the user the possible moves with a grid' do
+        expect(default_board.show_user_possibilities).to eq "THESE ARE THE POSSIBILITIES:\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n".colorize(:yellow)
+      end
+    end
+
+    context "#formatted_grid" do
+      it 'shows the formatted grid' do
+        expect(default_board.formatted_grid.length).to eq 3
+      end
+
+      it 'shows the formatted grid as an array' do
+        expect(default_board.formatted_grid.is_a?(Array)).to eq true
+      end
+
+    end
   end
 end

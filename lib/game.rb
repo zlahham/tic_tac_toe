@@ -33,9 +33,9 @@ module TicTacToe
     end
 
     def play
-      # puts messages(3)
       which_player_goes_first
-      puts
+      puts messages(3)
+      puts board.show_user_possibilities
       while true
         board.formatted_grid
         puts
