@@ -9,12 +9,17 @@ I built this game with the following restrictions:
 - When playing in the computer mode, the computer must never lose
 - The user should also have the choice of which player goes first.
 
+---
+
 ###Challenges
 
+---
 
 ###Future Plans
 - Make a Web app version with Sinatra
 - Make the Command line version look nicer
+
+---
 
 ###Setup
 ```
@@ -28,6 +33,8 @@ ruby lib/play_game.rb
 ```
 **Enjoy the Game!**
 
+---
+
 ###Testing
 ```
 git clone git@github.com:zlahham/tic_tac_toe.git
@@ -37,5 +44,4 @@ cd tic_tac_toe
 bundle
 
 rspec
-
 ```
