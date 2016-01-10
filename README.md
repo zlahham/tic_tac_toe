@@ -1,6 +1,6 @@
 ##TicTacToe in Ruby
 
-https://travis-ci.org/zlahham/tic_tac_toe.svg
+[![Build Status](https://travis-ci.org/zlahham/tic_tac_toe.svg?branch=master)](https://travis-ci.org/zlahham/tic_tac_toe)
 
 ###Summary
 This is a game of Tic-Tac-Toe aka Noughts and Crosses, built in the Ruby language.
