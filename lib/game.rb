@@ -93,8 +93,8 @@ module TicTacToe
         "\n#{current_player.name} has been selected as the first player",
         "Please use the numbers 1-9",
         "\n This cell is already occupied\n",
-        "\n\nWho would you like to go first? Player 1:#{@players[0].name} or Player 2:#{@players[1].name}",
-        "Please make a choice using 1 or 2"
+        "\n\nWho would you like to go first? #{"Player 1".colorize(:blue)}: #{@players[0].name.colorize(:blue)} or #{"Player 2".colorize(:red)}: #{@players[1].name.colorize(:red)}",
+        "Please make a choice using #{"1".underline} or #{"2".underline}".colorize(:green)
       ]
       msgs[num]
     end

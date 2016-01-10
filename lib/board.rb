@@ -22,8 +22,9 @@ module TicTacToe
     end
 
     def formatted_grid
+
       grid.each do |row|
-        puts row.map { |cell| cell.value.empty? ? "_" : cell.value }.join("\t")
+        puts row.map { |cell| cell.value.empty? ? "_".colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
       end
     end
 
@@ -70,6 +71,10 @@ module TicTacToe
       puts "-----------"
       puts " 7 | 8 | 9 "
       puts
+    end
+
+    def color_x_o(input)
+      input == "X" ? input.colorize(:blue) : input.colorize(:red)
     end
   end
 end
