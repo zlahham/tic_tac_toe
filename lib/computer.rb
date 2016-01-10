@@ -6,6 +6,5 @@ module TicTacToe
       @name   = options.fetch(:name)
       @weapon = options.fetch(:weapon)
     end
-
   end
 end

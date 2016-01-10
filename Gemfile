@@ -9,4 +9,5 @@ gem 'coveralls', require: false
 
 group :development, :test do
   gem "rspec"
+  gem "byebug"
 end

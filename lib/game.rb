@@ -1,3 +1,4 @@
+require "byebug"
 module TicTacToe
   class Game
 
@@ -27,6 +28,12 @@ module TicTacToe
       human_move_to_coord(integer_checker(human_move))
     end
 
+    def get_ai_move
+      arr = board.grid.flatten
+      arr2 = arr.each_index.select{|i| arr[i].value == ''}.first + 1
+      human_move_to_coord(arr2.to_s)
+    end
+
     def game_over_message
       return messages(1) if board.game_over == :winner
       return messages(2) if board.game_over == :draw
@@ -40,7 +47,12 @@ module TicTacToe
         board.formatted_grid
         puts
         puts ask_for_player_move
-        a, b = get_move
+        if current_player.name.include? "Computer"
+          a, b = get_ai_move
+          sleep(2)
+        else
+          a, b = get_move
+        end
         x, y = check_cell_occupied(a, b)
         board.set_cell(x, y, current_player.weapon)
         if board.game_over
@@ -87,9 +99,9 @@ module TicTacToe
 
     def messages(num)
       msgs = [
-        "#{current_player.name}: Enter a number between 1 and 9 to make your move",
-        "\n#{current_player.name} won!",
-        "\nThe game ended in a tie",
+        "#{current_player.weapon == "X" ? current_player.name.colorize(:blue) : current_player.name.colorize(:red)}: Enter a number between 1 and 9 to make your move",
+        "\n#{current_player.name} won! Woohoooo!!!\n".colorize(:red ).colorize( background: :light_blue),
+        "\nThe game ended in a tie".colorize(:yellow),
         "\n#{current_player.name} has been selected as the first player",
         "Please use the numbers 1-9",
         "\n This cell is already occupied\n",
