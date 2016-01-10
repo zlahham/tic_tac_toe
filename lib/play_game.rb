@@ -18,8 +18,8 @@ if @game_mode == 1
     players = [player_1, player_2]
 
     TicTacToe::Game.new(players).play
-    puts "\nWould you like to play again? \nPlease answer with Yn"
+    puts "\nWould you like to play again? [Y/n]"
     play_again = gets.chomp.downcase
-    break unless play_again == "n" || play_again == "no"
+    break if play_again == "n" || play_again == "no"
   end
 end

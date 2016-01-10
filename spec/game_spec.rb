@@ -3,13 +3,11 @@ module TicTacToe
 
     let (:player_1) { Player.new({name: "Zaid", weapon: "X"}) }
     let (:player_2) { Player.new({name: "Lahham", weapon: "O"}) }
-    let (:arr)      { Array.any_instance }
     let (:game)     { Game.new([player_1, player_2]) }
 
     context "#initialize" do
       it "randomly selects a current_player" do
         allow_any_instance_of(Array).to receive(:shuffle).and_return( [player_1, player_2] )
-
         expect(game.current_player).to eq player_1
       end
 
@@ -79,6 +77,13 @@ module TicTacToe
         allow(game.board).to receive(:game_over) { :draw }
         expect(game.game_over_message).to eq "\nThe game ended in a tie"
       end
+    end
+
+    context "#which_player_goes_first" do
+      it 'should ask who would like to go first' do
+
+      end
+
     end
   end
 end

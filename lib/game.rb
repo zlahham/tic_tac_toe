@@ -12,7 +12,7 @@ module TicTacToe
     def initialize(players, board=Board.new)
       @players = players
       @board = board
-      @current_player, @other_player = players.shuffle
+      @current_player, @other_player = players
     end
 
     def change_players
@@ -33,7 +33,8 @@ module TicTacToe
     end
 
     def play
-      puts messages(3)
+      # puts messages(3)
+      which_player_goes_first
       puts
       while true
         board.formatted_grid
@@ -47,6 +48,7 @@ module TicTacToe
           board.formatted_grid
           return
         else
+          Gem.win_platform? ? (system "cls") : (system "clear")
           change_players
         end
       end
@@ -76,14 +78,23 @@ module TicTacToe
       [x, y]
     end
 
+    def which_player_goes_first
+      puts messages(6)
+      puts messages(7)
+      choice = gets.chomp.to_i
+      @current_player, @other_player = @players[1], @players[0] if choice == 2
+    end
+
     def messages(num)
       msgs = [
         "#{current_player.name}: Enter a number between 1 and 9 to make your move",
         "\n#{current_player.name} won!",
         "\nThe game ended in a tie",
-        "\n#{current_player.name} has randomly been selected as the first player",
+        "\n#{current_player.name} has been selected as the first player",
         "Please use the numbers 1-9",
-        "\n This cell is already occupied\n"
+        "\n This cell is already occupied\n",
+        "\n\nWho would you like to go first? Player 1:#{@players[0].name} or Player 2:#{@players[1].name}",
+        "Please make a choice using 1 or 2"
       ]
       msgs[num]
     end
