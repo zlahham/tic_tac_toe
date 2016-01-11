@@ -8,10 +8,10 @@ This is a game of Tic-Tac-Toe aka Noughts and Crosses, built in the Ruby languag
 If you would like to read more on the rules of this game: [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe)
 
 I built this game with the following restrictions:
-- [ ] Playable in 3 modes:
+- [x] Playable in 3 modes:
   - [x] Human VS Human
-  - [ ] Human VS Computer
-  - [ ] Computer VS Computer
+  - [x] Human VS Computer
+  - [x] Computer VS Computer
 - [ ] When playing against the computer, the computer must never lose
 - [x] The user should also have the choice of which player goes first.
 
