@@ -1,4 +1,5 @@
 require "byebug"
+
 module TicTacToe
   class Game
 
@@ -30,8 +31,17 @@ module TicTacToe
 
     def get_ai_move
       arr = board.grid.flatten
-      arr2 = arr.each_index.select{|i| arr[i].value == ''}.first + 1
-      human_move_to_coord(arr2.to_s)
+      # moves = []
+
+      if arr.map { |cell| cell.value }.all_empty? # FIRST MOVE
+        human_move_to_coord("5")
+      else
+        # CHECK_FOR_THREAT(arr)
+        # CHECK_FOR_WIN(arr)
+
+        arr2 = arr.each_index.select{|i| arr[i].value == ''}.sample + 1
+        human_move_to_coord(arr2.to_s)
+      end
     end
 
     def game_over_message
@@ -49,7 +59,7 @@ module TicTacToe
         puts ask_for_player_move
         if current_player.name.include? "Computer"
           a, b = get_ai_move
-          sleep(2)
+          current_player.loading_animation
         else
           a, b = get_move
         end

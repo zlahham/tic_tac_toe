@@ -5,14 +5,14 @@ include Curses
 
 
 Curses.init_screen
-term_width = Curses.cols
+@term_width = Curses.cols
 Curses.close_screen
 
 # WELCOME
 Gem.win_platform? ? (system "cls") : (system "clear")
-puts "".center(term_width).colorize(:yellow).on_blue
-puts "Welcome to ZL's edition of Tic Tac Toe".center(term_width).colorize(:yellow).on_blue
-puts "".center(term_width).colorize(:yellow).on_blue
+puts "".center(@term_width).colorize(:yellow).on_blue
+puts "Welcome to ZL's edition of Tic Tac Toe".center(@term_width).colorize(:yellow).on_blue
+puts "".center(@term_width).colorize(:yellow).on_blue
 
 # Which Game mode?
 puts "\nPlease choose a game mode:\n1: Human vs Human\n2: Human vs Computer\n3: Computer vs Computer\n"
@@ -40,8 +40,6 @@ def lets_play_ttt(game_mode)
     while true
       puts "\nPlease enter the name for #{"Player 1".colorize(:blue)}"
       @name1 = gets.chomp
-      # puts "\nPlease enter the name for #{"Computer".colorize(:red)}"
-      # @name2 = gets.chomp
 
       player_1 = TicTacToe::Player.new({name: @name1, weapon: "X", })
       computer = TicTacToe::Computer.new({name: "Computer", weapon: "0", })

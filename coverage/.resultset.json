@@ -118,6 +118,15 @@
         0,
         null,
         null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/ZaidMacBook/Dropbox/projects/ruby/tic_tac_toe_techtest/lib/extensions.rb": [
@@ -141,6 +150,7 @@
       ],
       "/Users/ZaidMacBook/Dropbox/projects/ruby/tic_tac_toe_techtest/lib/game.rb": [
         1,
+        null,
         1,
         1,
         null,
@@ -172,8 +182,17 @@
         null,
         1,
         0,
+        null,
+        null,
         0,
         0,
+        null,
+        null,
+        null,
+        null,
+        0,
+        0,
+        null,
         null,
         null,
         1,
@@ -611,6 +630,6 @@
         null
       ]
     },
-    "timestamp": 1452455869
+    "timestamp": 1452510855
   }
 }
