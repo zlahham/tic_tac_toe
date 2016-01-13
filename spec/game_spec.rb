@@ -60,11 +60,11 @@ module TicTacToe
         expect(game.get_move("a")).to eq "a"
       end
 
-      xit "does not allow player to place choice in an occupied cell" do
+      it "does not allow player to place choice in an occupied cell" do
         current_player = game.current_player
-        game.get_move(1)
+        game.get_move("1")
         game.change_players
-        expect { game.get_move(1) }.not_to raise_error
+        expect { game.get_move("1") }.not_to raise_error
         expect(game.other_player).to eq current_player
       end
     end

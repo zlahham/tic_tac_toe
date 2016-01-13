@@ -52,33 +52,7 @@ module TicTacToe
       return messages(2) if board.game_over == :draw
     end
 
-    def generate_gamestate
-      # initial_game_state = Board.new('X', Array.new(9))
-      initial_game_state = @board
-      generate_moves(initial_game_state)
-      initial_game_state
-    end
-
-    def generate_moves(board_state)
-      # next_player = (current_player == 'O' ? 'X' : 'O')
-      board_state.grid.each_with_index do |row, i|
-        row.each_with_index do |player_at_position, position|
-          if player_at_position.value == ""
-            next_board = board_state.clone
-            next_board.set_cell(i, position, current_player.weapon)
-            # next_board[position][i] = current_player.weapon
-            # next_board.grid[position][i].value = current_player.weapon
-            next_game_state = Board.new({grid: next_board.grid})
-            moves << next_game_state
-            change_players
-            generate_moves(next_game_state)
-          end
-        end
-      end
-    end
-
     def play
-      # which_player_goes_first
       puts messages(3)
       puts board.show_user_possibilities
       while true
@@ -88,7 +62,7 @@ module TicTacToe
 
         if current_player.is_a? Computer
           a, b = get_ai_move
-          # current_player.loading_animation
+          current_player.loading_animation
         else
           a, b = get_move
         end
