@@ -25,7 +25,7 @@ I found this a bit more complex that I would have imagined before starting it.
 The complexity that I came across was mainly dealing with the AI (Computer player).
 
 It was easy to get the computer to make a random move but then getting the algorithm right to make the "best" move took some time. I realised that I was approaching the problem from a messy angle and that caused the delays.
-I then came across the **MINIMAX** Algorithm after researching the matter extensively. This took me quite a while to understand and apply properly.
+I then came across the [**MINIMAX**](https://en.wikipedia.org/wiki/Minimax) Algorithm after researching the matter extensively. This took me quite a while to understand and apply properly.
 After hours and hours, I managed to successfully implement the algorithm and plug it into the Game.
 
 I found it was a better approach to place all the Game rules in front of me and then write up the pseudo-code for it, bearing in mind the "best" moves.
