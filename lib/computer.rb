@@ -10,8 +10,8 @@ module TicTacToe
     def loading_animation
       str = "\r#{name} is thinking"
       10.times do
-        print str += ' 🤖' #.colorize(:red)
-        sleep(0.2)
+        print str += ' 🤖'
+        sleep(0.1)
       end
     end
 

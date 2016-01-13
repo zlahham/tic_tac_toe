@@ -1,5 +1,3 @@
-require "byebug"
-
 module TicTacToe
   class Game
 
@@ -26,22 +24,27 @@ module TicTacToe
     end
 
     def get_move(human_move = gets.chomp)
-      human_move_to_coord(integer_checker(human_move))
+      move_to_coord(integer_checker(human_move))
     end
 
     def get_ai_move
-      arr = board.grid.flatten
-      # moves = []
-
-      if arr.map { |cell| cell.value }.all_empty? # FIRST MOVE
-        human_move_to_coord("5")
-      else
-        # CHECK_FOR_THREAT(arr)
-        # CHECK_FOR_WIN(arr)
-
-        arr2 = arr.each_index.select{|i| arr[i].value == ''}.sample + 1
-        human_move_to_coord(arr2.to_s)
+      weapon = current_player.weapon
+      other_weapon = other_player.weapon
+      state = (0..2).flat_map do |r|
+        (0..2).map do |c|
+          val = board.grid[r][c].value
+          if val == weapon
+            1
+          elsif val == other_weapon
+            -1
+          else
+            0
+          end
+        end
       end
+
+      move = Minimax.next_best_step state
+      move_to_coord((move+1).to_s)
     end
 
     def game_over_message
@@ -49,17 +52,43 @@ module TicTacToe
       return messages(2) if board.game_over == :draw
     end
 
+    def generate_gamestate
+      # initial_game_state = Board.new('X', Array.new(9))
+      initial_game_state = @board
+      generate_moves(initial_game_state)
+      initial_game_state
+    end
+
+    def generate_moves(board_state)
+      # next_player = (current_player == 'O' ? 'X' : 'O')
+      board_state.grid.each_with_index do |row, i|
+        row.each_with_index do |player_at_position, position|
+          if player_at_position.value == ""
+            next_board = board_state.clone
+            next_board.set_cell(i, position, current_player.weapon)
+            # next_board[position][i] = current_player.weapon
+            # next_board.grid[position][i].value = current_player.weapon
+            next_game_state = Board.new({grid: next_board.grid})
+            moves << next_game_state
+            change_players
+            generate_moves(next_game_state)
+          end
+        end
+      end
+    end
+
     def play
-      which_player_goes_first
+      # which_player_goes_first
       puts messages(3)
       puts board.show_user_possibilities
       while true
         board.formatted_grid
         puts
         puts ask_for_player_move
-        if current_player.name.include? "Computer"
+
+        if current_player.is_a? Computer
           a, b = get_ai_move
-          current_player.loading_animation
+          # current_player.loading_animation
         else
           a, b = get_move
         end
@@ -76,10 +105,17 @@ module TicTacToe
       end
     end
 
+    def which_player_goes_first
+      puts messages(6)
+      puts messages(7)
+      choice = gets.chomp.to_i
+      @current_player, @other_player = @players[1], @players[0] if choice == 2
+    end
+
     private
 
-    def human_move_to_coord(human_move)
-      MAPPING[human_move]
+    def move_to_coord(move)
+      MAPPING[move]
     end
 
     def integer_checker(input)
@@ -95,16 +131,9 @@ module TicTacToe
       while true
         break if board.coords_cell(x, y).value.empty?
         puts messages(5)
-        x, y = human_move_to_coord(gets.chomp)
+        x, y = move_to_coord(gets.chomp)
       end
       [x, y]
-    end
-
-    def which_player_goes_first
-      puts messages(6)
-      puts messages(7)
-      choice = gets.chomp.to_i
-      @current_player, @other_player = @players[1], @players[0] if choice == 2
     end
 
     def messages(num)

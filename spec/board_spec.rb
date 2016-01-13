@@ -147,7 +147,6 @@ module TicTacToe
       it 'shows the formatted grid as an array' do
         expect(default_board.formatted_grid.is_a?(Array)).to eq true
       end
-
     end
   end
 end

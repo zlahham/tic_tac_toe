@@ -36,7 +36,6 @@ module TicTacToe
       Array.new(3) { Array.new(3) { Cell.new } }
     end
 
-
     def draw?
       grid.flatten.map { |cell| cell.value }.none_empty?
     end

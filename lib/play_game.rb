@@ -3,7 +3,6 @@ require "colorize"
 require "curses"
 include Curses
 
-
 Curses.init_screen
 @term_width = Curses.cols
 Curses.close_screen
@@ -16,10 +15,10 @@ puts "".center(@term_width).colorize(:yellow).on_blue
 
 # Which Game mode?
 puts "\nPlease choose a game mode:\n1: Human vs Human\n2: Human vs Computer\n3: Computer vs Computer\n"
-@game_mode = gets.chomp.to_i
+game_mode = gets.chomp.to_i
 
 def lets_play_ttt(game_mode)
-  if @game_mode == 1 # Human vs Human
+  if game_mode == 1 # Human vs Human
     while true
       puts "\nPlease enter the name for #{"Player 1".colorize(:blue)}"
       @name1 = gets.chomp
@@ -30,13 +29,16 @@ def lets_play_ttt(game_mode)
       player_2 = TicTacToe::Player.new({name: @name2, weapon: "O", })
       players = [player_1, player_2]
 
-      TicTacToe::Game.new(players).play
+      game = TicTacToe::Game.new(players)
+      game.which_player_goes_first
+      game.play
+
       puts "\nWould you like to play again?"
       puts "[Y/n]".colorize(:yellow)
       play_again = gets.chomp.downcase
       break if play_again == "n" || play_again == "no"
     end
-  elsif @game_mode == 2 # Human vs Computer
+  elsif game_mode == 2 # Human vs Computer
     while true
       puts "\nPlease enter the name for #{"Player 1".colorize(:blue)}"
       @name1 = gets.chomp
@@ -45,32 +47,36 @@ def lets_play_ttt(game_mode)
       computer = TicTacToe::Computer.new({name: "Computer", weapon: "0", })
       players = [player_1, computer]
 
-      TicTacToe::Game.new(players).play
+      game = TicTacToe::Game.new(players)
+      game.which_player_goes_first
+      game.play
+
       puts "\nWould you like to play again?"
       puts "[Y/n]".colorize(:yellow)
       play_again = gets.chomp.downcase
       break if play_again == "n" || play_again == "no"
     end
-  elsif @game_mode == 3 # Computer vs Computer
+  elsif game_mode == 3 # Computer vs Computer
     while true
-
       computer_1 = TicTacToe::Computer.new({name: "Computer 1", weapon: "X", })
       computer_2 = TicTacToe::Computer.new({name: "Computer 2", weapon: "0", })
       players = [computer_1, computer_2]
 
-      TicTacToe::Game.new(players).play
+      game = TicTacToe::Game.new(players)
+      game.which_player_goes_first
+      game.play
+
       puts "\nWould you like to play again?"
       puts "[Y/n]".colorize(:yellow)
       play_again = gets.chomp.downcase
       break if play_again == "n" || play_again == "no"
     end
-
   else
     puts "\nPlease choose a game mode:\n1: Human vs Human\n2: Human vs Computer\n3: Computer vs Computer\n"
-    @game_mode = gets.chomp.to_i
-    lets_play_ttt(@game_mode)
+    game_mode = gets.chomp.to_i
+    lets_play_ttt(game_mode)
   end
 end
 
 
-lets_play_ttt(@game_mode)
+lets_play_ttt(game_mode)
