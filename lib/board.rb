@@ -26,7 +26,8 @@ module TicTacToe
 
     def formatted_grid
       grid.each do |row|
-        puts row.map { |cell| cell.value.empty? ? '_'.colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
+        print row.map { |cell| cell.value.empty? ? '_'.colorize(:light_yellow) : color_x_o(cell.value) }.join('   ')
+        print "\n\n"
       end
     end
 

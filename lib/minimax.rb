@@ -48,7 +48,7 @@ module TicTacToe
     end
 
     def self.mark(state, value, index)
-      state.clone.tap{|s| s[index] = value}
+      state.clone.tap { |s| s[index] = value }
     end
 
     def self.win?(state, val)
@@ -69,12 +69,12 @@ module TicTacToe
     end
 
     def self.get_column(state, col)
-      (0..2).map { |r| state[r * 3 +col] }
+      (0..2).map { |r| state[r * 3 + col] }
     end
 
     # TEST HERE
     def self.test(num)
-      num.times.map { test_play(INITIAL_STATE) }.all?{ |state| draw? state }
+      num.times.map { test_play(INITIAL_STATE) }.all? { |state| draw? state }
     end
 
     def self.test_play(state)
