@@ -32,4 +32,12 @@ class String
   def green
     colorize(:green)
   end
+
+  def light_yellow
+    colorize(:light_yellow)
+  end
+
+  def light_blue
+    colorize(:light_blue)
+  end
 end

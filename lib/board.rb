@@ -6,12 +6,16 @@ module TicTacToe
       @grid = options.fetch(:grid, grid_shape)
     end
 
-    def coords_cell(x, y)
+    def find_cell(x, y)
       grid[y][x]
     end
 
+    def find_cell_value(x, y) # TEST THIS
+      grid[y][x].value
+    end
+
     def set_cell(x, y, input)
-      coords_cell(x, y).value = input
+      find_cell(x, y).value = input
     end
 
     def game_over
@@ -21,12 +25,12 @@ module TicTacToe
     end
 
     def show_user_possibilities
-      "THESE ARE THE POSSIBILITIES:\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n".colorize(:yellow)
+      "THESE ARE THE POSSIBILITIES:\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n".yellow
     end
 
     def formatted_grid
       grid.each do |row|
-        print row.map { |cell| cell.value.empty? ? '_'.colorize(:light_yellow) : color_x_o(cell.value) }.join('   ')
+        print row.map { |cell| cell.value.empty? ? '_'.light_yellow : color_x_o(cell.value) }.join('   ')
         print "\n\n"
       end
     end
@@ -58,12 +62,12 @@ module TicTacToe
     end
 
     def diagonals
-      [[coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
-       [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)]]
+      [[find_cell(0, 0), find_cell(1, 1), find_cell(2, 2)],
+       [find_cell(0, 2), find_cell(1, 1), find_cell(2, 0)]]
     end
 
     def color_x_o(input)
-      input == 'X' ? input.colorize(:blue) : input.colorize(:red)
+      input == 'X' ? input.blue : input.red
     end
   end
 end

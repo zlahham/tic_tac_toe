@@ -31,16 +31,16 @@ module TicTacToe
       end
     end
 
-    context '#coords_cell' do
+    context '#find_cell' do
       it 'returns the coords of the cell' do
-        expect(board_2.coords_cell(1,0)).to eq 'O'
+        expect(board_2.find_cell(1,0)).to eq 'O'
       end
     end
 
     context '#set_cell' do
       it 'places the new cell value' do
         default_board.set_cell(0,0,'X')
-        expect(default_board.coords_cell(0,0).value).to eq 'X'
+        expect(default_board.find_cell(0,0).value).to eq 'X'
       end
     end
 

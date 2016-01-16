@@ -19,31 +19,32 @@ module TicTacToe
     end
 
     def ask_for_player_move
-      messages(0)
+      puts messages(0)
     end
 
     def get_move(human_move = gets.chomp)
-      move_to_coord(integer_checker(human_move))
+      move_1 = integer_checker(human_move)
+      move_2 = move_to_coord(move_1)
+      check_cell_occupied(move_2)
     end
 
-    def computer_move
-      weapon = current_player.weapon
-      other_weapon = other_player.weapon
+    def computer_move # TEST THIS
+      state
+      move = Minimax.next_best_step(state)
+      move_to_coord((move + 1).to_s)
+    end
+
+    def state # TEST THIS
       state = (0..2).flat_map do |r|
         (0..2).map do |c|
-          val = board.grid[r][c].value
-          if val == weapon
-            1
-          elsif val == other_weapon
-            -1
-          else
-            0
+          case _val = board.find_cell_value(c, r)
+          when current_player.weapon then 1
+          when other_player.weapon then -1
+          else 0
           end
         end
       end
-
-      move = Minimax.next_best_step state
-      move_to_coord((move + 1).to_s)
+      state
     end
 
     def game_over_message
@@ -51,24 +52,10 @@ module TicTacToe
       return messages(2) if board.game_over == :draw
     end
 
-    def play
+    def play # TEST THIS
       puts messages(3)
       puts board.show_user_possibilities
-      until board.game_over
-        board.formatted_grid
-        puts ask_for_player_move
-
-        if current_player.is_a? Computer
-          a, b = computer_move
-          current_player.loading_animation
-        else
-          a, b = get_move
-        end
-        x, y = check_cell_occupied(a, b)
-        board.set_cell(x, y, current_player.weapon)
-        Gem.win_platform? ? (system 'cls') : (system 'clear')
-        change_players
-      end
+      keep_playing_until_over
       puts game_over_message
       board.formatted_grid
     end
@@ -82,6 +69,24 @@ module TicTacToe
 
     private
 
+    def keep_playing_until_over
+      until board.game_over
+        board.formatted_grid
+        ask_for_player_move
+
+        if current_player.is_a? Computer
+          a, b = computer_move
+          # current_player.loading_animation
+        else
+          a, b = get_move
+        end
+        # x, y = check_cell_occupied(a, b)
+        board.set_cell(a, b, current_player.weapon)
+        Gem.win_platform? ? (system 'cls') : (system 'clear')
+        change_players
+      end
+    end
+
     def move_to_coord(move)
       MAPPING[move]
     end
@@ -94,8 +99,9 @@ module TicTacToe
       input
     end
 
-    def check_cell_occupied(x, y)
-      until board.coords_cell(x, y).value.empty?
+    def check_cell_occupied(cell_coordinates)
+      x, y = cell_coordinates
+      until board.find_cell(x, y).value.empty?
         puts messages(5)
         x, y = move_to_coord(gets.chomp)
       end
@@ -105,7 +111,7 @@ module TicTacToe
     def messages(num)
       msgs = [
         "#{current_player.weapon == 'X' ? current_player.name.blue : current_player.name.red}: Enter a number between 1 and 9 to make your move",
-        "\n#{current_player.name} won! Woohoooo!!!\n".red.colorize(background: :light_blue),
+        "\n#{current_player.name} won! Woohoooo!!!\n".red.light_blue,
         "\nThe game ended in a tie".yellow,
         "\n#{current_player.name} has been selected as the first player",
         'Please use the numbers 1-9',
