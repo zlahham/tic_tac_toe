@@ -6,11 +6,11 @@ module TicTacToe
       @grid = options.fetch(:grid, grid_shape)
     end
 
-    def coords_cell(x,y)
+    def coords_cell(x, y)
       grid[y][x]
     end
 
-    def set_cell(x,y,input)
+    def set_cell(x, y, input)
       coords_cell(x, y).value = input
     end
 
@@ -26,7 +26,7 @@ module TicTacToe
 
     def formatted_grid
       grid.each do |row|
-        puts row.map { |cell| cell.value.empty? ? "_".colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
+        puts row.map { |cell| cell.value.empty? ? '_'.colorize(:light_yellow) : color_x_o(cell.value) }.join("\t")
       end
     end
 
@@ -37,7 +37,7 @@ module TicTacToe
     end
 
     def draw?
-      grid.flatten.map { |cell| cell.value }.none_empty?
+      grid.flatten.map(&:value).none_empty?
     end
 
     def winner?
@@ -49,7 +49,7 @@ module TicTacToe
     end
 
     def winning_position_values(winning_position)
-      winning_position.map { |cell| cell.value }
+      winning_position.map(&:value)
     end
 
     def winning_positions
@@ -57,12 +57,12 @@ module TicTacToe
     end
 
     def diagonals
-      [ [coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
-        [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)] ]
+      [[coords_cell(0, 0), coords_cell(1, 1), coords_cell(2, 2)],
+       [coords_cell(0, 2), coords_cell(1, 1), coords_cell(2, 0)]]
     end
 
     def color_x_o(input)
-      input == "X" ? input.colorize(:blue) : input.colorize(:red)
+      input == 'X' ? input.colorize(:blue) : input.colorize(:red)
     end
   end
 end

@@ -1,15 +1,14 @@
 module TicTacToe
   class Game
-
     attr_reader :players, :board, :current_player, :other_player
 
     MAPPING = {
-      "1" => [0, 0], "2" => [1, 0], "3" => [2, 0],
-      "4" => [0, 1], "5" => [1, 1], "6" => [2, 1],
-      "7" => [0, 2], "8" => [1, 2], "9" => [2, 2]
+      '1' => [0, 0], '2' => [1, 0], '3' => [2, 0],
+      '4' => [0, 1], '5' => [1, 1], '6' => [2, 1],
+      '7' => [0, 2], '8' => [1, 2], '9' => [2, 2]
     }
 
-    def initialize(players, board=Board.new)
+    def initialize(players, board= Board.new)
       @players = players
       @board = board
       @current_player, @other_player = players
@@ -44,7 +43,7 @@ module TicTacToe
       end
 
       move = Minimax.next_best_step state
-      move_to_coord((move+1).to_s)
+      move_to_coord((move + 1).to_s)
     end
 
     def game_over_message
@@ -73,7 +72,7 @@ module TicTacToe
           board.formatted_grid
           return
         else
-          Gem.win_platform? ? (system "cls") : (system "clear")
+          Gem.win_platform? ? (system 'cls') : (system 'clear')
           change_players
         end
       end
@@ -94,7 +93,7 @@ module TicTacToe
 
     def integer_checker(input)
       while true
-        break if (1..9).include?(input.to_i)
+        break if (1..9).cover?(input.to_i)
         puts messages(4)
         input = gets.chomp
       end
@@ -112,14 +111,14 @@ module TicTacToe
 
     def messages(num)
       msgs = [
-        "#{current_player.weapon == "X" ? current_player.name.colorize(:blue) : current_player.name.colorize(:red)}: Enter a number between 1 and 9 to make your move",
-        "\n#{current_player.name} won! Woohoooo!!!\n".colorize(:red ).colorize( background: :light_blue),
+        "#{current_player.weapon == 'X' ? current_player.name.colorize(:blue) : current_player.name.colorize(:red)}: Enter a number between 1 and 9 to make your move",
+        "\n#{current_player.name} won! Woohoooo!!!\n".colorize(:red).colorize(background: :light_blue),
         "\nThe game ended in a tie".colorize(:yellow),
         "\n#{current_player.name} has been selected as the first player",
-        "Please use the numbers 1-9",
+        'Please use the numbers 1-9',
         "\n This cell is already occupied\n",
-        "\n\nWho would you like to go first? #{"Player 1".colorize(:blue)}: #{@players[0].name.colorize(:blue)} or #{"Player 2".colorize(:red)}: #{@players[1].name.colorize(:red)}",
-        "Please make a choice using #{"1".underline} or #{"2".underline}".colorize(:green)
+        "\n\nWho would you like to go first? #{'Player 1'.colorize(:blue)}: #{@players[0].name.colorize(:blue)} or #{'Player 2'.colorize(:red)}: #{@players[1].name.colorize(:red)}",
+        "Please make a choice using #{'1'.underline} or #{'2'.underline}".colorize(:green)
       ]
       msgs[num]
     end
