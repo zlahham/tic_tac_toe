@@ -6,6 +6,7 @@ module TicTacToe
     let(:computer_2)   { Computer.new(name: 'Computer 2', weapon: 'O') }
     let(:comp_players) { [computer_1, computer_2] }
     let(:game)         { Game.new([player_1, player_2]) }
+    let(:cell)         { [0, 0] }
 
     context '#initialize' do
       it 'randomly selects a current_player' do
@@ -86,6 +87,18 @@ module TicTacToe
         game = TicTacToe::Game.new(comp_players)
         game.play
         expect(game.board.game_over).to eq :draw
+      end
+    end
+
+    context '#integer_checker' do
+      it 'accepts integers 1-9' do
+        expect(game.integer_checker(1)).to eq 1
+      end
+    end
+
+    context '#check_cell_occupied' do
+      it 'returns cell if unoccupied' do
+        expect(game.check_cell_occupied(cell)).to eq [0,0]
       end
     end
   end

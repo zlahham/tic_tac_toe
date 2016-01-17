@@ -77,23 +77,6 @@ module TicTacToe
       change_players if choice == 2
     end
 
-    private
-
-    def keep_playing_until_over
-      until board.game_over
-        board.formatted_grid
-        puts ask_for_player_move
-        a, b = final_move
-        board.set_cell(a, b, current_player.weapon)
-        Gem.win_platform? ? (system 'cls') : (system 'clear')
-        change_players
-      end
-    end
-
-    def move_to_coord(move)
-      MAPPING[move]
-    end
-
     def integer_checker(input)
       until (1..9).cover?(input.to_i)
         puts messages(:e)
@@ -109,6 +92,23 @@ module TicTacToe
         x, y = move_to_coord(gets.chomp)
       end
       [x, y]
+    end
+
+    private
+
+    def keep_playing_until_over
+      until board.game_over
+        board.formatted_grid
+        puts ask_for_player_move
+        a, b = final_move
+        board.set_cell(a, b, current_player.weapon)
+        Gem.win_platform? ? (system 'cls') : (system 'clear')
+        change_players
+      end
+    end
+
+    def move_to_coord(move)
+      MAPPING[move]
     end
 
     def messages(key)
