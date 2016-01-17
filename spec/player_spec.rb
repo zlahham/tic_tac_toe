@@ -4,11 +4,11 @@ module TicTacToe
 
     context '#initialize' do
       it 'raises an error when passed an empty Hash' do
-        expect{ Player.new({}) }.to raise_error(KeyError)
+        expect { Player.new({}) }.to raise_error(KeyError)
       end
 
       it 'does not raise an error when passed the correct keys' do
-        expect{ subject }.not_to raise_error
+        expect { subject }.not_to raise_error
       end
     end
 

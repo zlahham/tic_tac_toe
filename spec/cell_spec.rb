@@ -9,7 +9,7 @@ module TicTacToe
         cell = Cell.new('X')
         expect(cell.value).to eq 'X'
       end
-      
+
       it 'can take a parameter of O' do
         cell = Cell.new('O')
         expect(cell.value).to eq 'O'

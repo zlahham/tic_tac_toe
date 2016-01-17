@@ -1,6 +1,6 @@
 module TicTacToe
   module Minimax
-    INITIAL_STATE = [0,0,0,0,0,0,0,0,0]
+    INITIAL_STATE = [0, 0, 0, 0, 0, 0, 0, 0, 0].freeze
     @@cache = {}
 
     def self.next_best_step(state)
@@ -20,27 +20,21 @@ module TicTacToe
     end
 
     def self.minimax(state, maximizing)
-      if @@cache[hash(state, maximizing)]
-        return @@cache[hash(state, maximizing)]
-      end
+      return @@cache[hash(state, maximizing)] if @@cache[hash(state, maximizing)]
 
-      if win? state, 1
+      if win?(state, 1)
         return 1
-      elsif win? state, -1
+      elsif win?(state, -1)
         return -1
-      elsif draw? state
+      elsif draw?(state)
         return 0
       end
 
       @@cache[hash(state, maximizing)] ||= if maximizing
-        free_positions(state).map do |i|
-          minimax mark(state, 1, i), false
-        end.max
-      else
-        free_positions(state).map do |i|
-          minimax mark(state, -1, i), true
-        end.min
-      end
+                                             free_positions(state).map { |i| minimax mark(state, 1, i), false }.max
+                                           else
+                                             free_positions(state).map { |i| minimax mark(state, -1, i), true }.min
+                                           end
     end
 
     def self.free_positions(state)
@@ -74,7 +68,7 @@ module TicTacToe
 
     # TEST HERE
     def self.test(num)
-      num.times.map { test_play(INITIAL_STATE) }.all? { |state| draw? state }
+      Array.new(num) { test_play(INITIAL_STATE) }.all? { |state| draw? state }
     end
 
     def self.test_play(state)

@@ -37,7 +37,7 @@ class String
     colorize(:light_yellow)
   end
 
-  def light_blue
-    colorize(:light_blue)
+  def back_light_blue
+    colorize(background: :light_blue)
   end
 end

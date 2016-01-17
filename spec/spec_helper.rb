@@ -1,11 +1,8 @@
 require 'coveralls'
 Coveralls.wear!
 
-require_relative "../lib/tic_tac_toe.rb"
-require "colorize"
-
-
-
+require_relative '../lib/tic_tac_toe.rb'
+require 'colorize'
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
