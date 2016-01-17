@@ -52,3 +52,38 @@ describe Array do
     end
   end
 end
+
+describe String do
+  let(:string)   { 'Hello, my name is Zaid' }
+
+  context '#red' do
+    it 'colours the string with red' do
+      expect(string.red).to eq "\e[0;31;49mHello, my name is Zaid\e[0m"
+    end
+  end
+  context '#yellow' do
+    it 'colours the string with yellow' do
+      expect(string.yellow).to eq "\e[0;33;49mHello, my name is Zaid\e[0m"
+    end
+  end
+  context '#blue' do
+    it 'colours the string with blue' do
+      expect(string.blue).to eq "\e[0;34;49mHello, my name is Zaid\e[0m"
+    end
+  end
+  context '#green' do
+    it 'colours the string with green' do
+      expect(string.green).to eq "\e[0;32;49m#{string}\e[0m"
+    end
+  end
+  context '#light_yellow' do
+    it 'colours the string with light yellow' do
+      expect(string.light_yellow).to eq "\e[0;93;49m#{string}\e[0m"
+    end
+  end
+  context '#back_light_blue' do
+    it 'colours the strings background with light blue' do
+      expect(string.back_light_blue).to eq "\e[0;39;104m#{string}\e[0m"
+    end
+  end
+end

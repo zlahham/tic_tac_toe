@@ -7,6 +7,8 @@ module TicTacToe
       @weapon = options.fetch(:weapon)
     end
 
+    private
+
     def loading_animation
       str = "\r#{name} is thinking"
       10.times do
