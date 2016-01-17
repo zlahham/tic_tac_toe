@@ -10,7 +10,7 @@ module TicTacToe
       grid[y][x]
     end
 
-    def find_cell_value(x, y) # TEST THIS
+    def find_cell_value(x, y)
       grid[y][x].value
     end
 

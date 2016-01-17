@@ -46,6 +46,12 @@ module TicTacToe
       end
     end
 
+    context '#find_cell_value' do
+      it 'returns the value of the cell' do
+        expect(default_board.find_cell_value(1, 0)).to eq ''
+      end
+    end
+
     context '#set_cell' do
       it 'places the new cell value' do
         default_board.set_cell(0, 0, 'X')
