@@ -1,7 +1,7 @@
 module TicTacToe
   describe Game do
-    let(:player_1)     { Player.new(name: 'Zaid', weapon: 'X') }
-    let(:player_2)     { Player.new(name: 'Lahham', weapon: 'O') }
+    let(:player_1)     { Human.new(name: 'Zaid', weapon: 'X') }
+    let(:player_2)     { Human.new(name: 'Lahham', weapon: 'O') }
     let(:computer_1)   { Computer.new(name: 'Computer 1', weapon: 'X') }
     let(:computer_2)   { Computer.new(name: 'Computer 2', weapon: 'O') }
     let(:comp_players) { [computer_1, computer_2] }
@@ -98,7 +98,7 @@ module TicTacToe
 
     context '#check_cell_occupied' do
       it 'returns cell if unoccupied' do
-        expect(game.check_cell_occupied(cell)).to eq [0,0]
+        expect(game.check_cell_occupied(cell)).to eq [0, 0]
       end
     end
   end
