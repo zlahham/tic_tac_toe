@@ -61,7 +61,7 @@ cd tic_tac_toe
 
 bundle
 
-ruby lib/play_game.rb
+bin/ttt
 ```
 **Enjoy the Game!**
 
