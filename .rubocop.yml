@@ -11,3 +11,4 @@ AllCops:
   Exclude:
     - 'Guardfile'
     - 'Gemfile'
+    - 'bin/'

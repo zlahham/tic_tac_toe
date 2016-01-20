@@ -3,7 +3,6 @@ require_relative '../game'
 
 module TicTacToe
   module GameModes
-
     class ComputerVsComputer
       def name
         'Computer VS Computer'

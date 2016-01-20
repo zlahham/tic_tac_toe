@@ -24,13 +24,9 @@ module TicTacToe
     end
 
     def self.calculate_minimax(state, maximizing)
-      if win?(state, 1)
-        return 1
-      elsif win?(state, -1)
-        return -1
-      elsif draw?(state)
-        return 0
-      end
+      return 1 if win?(state, 1)
+      return -1 if win?(state, -1)
+      return 0 if draw?(state)
 
       if maximizing
         free_positions(state).map { |i| minimax mark(state, 1, i), false }.max
@@ -68,7 +64,7 @@ module TicTacToe
       (0..2).map { |r| state[r * 3 + col] }
     end
 
-    # TEST HERE
+    # TESTS HERE
     def self.test(num)
       Array.new(num) { test_play(INITIAL_STATE) }.all? { |state| draw? state }
     end
