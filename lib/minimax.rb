@@ -20,8 +20,10 @@ module TicTacToe
     end
 
     def self.minimax(state, maximizing)
-      return @@cache[hash(state, maximizing)] if @@cache[hash(state, maximizing)]
+      @@cache[hash(state, maximizing)] ||= calculate_minimax(state, maximizing)
+    end
 
+    def self.calculate_minimax(state, maximizing)
       if win?(state, 1)
         return 1
       elsif win?(state, -1)
@@ -30,11 +32,11 @@ module TicTacToe
         return 0
       end
 
-      @@cache[hash(state, maximizing)] ||= if maximizing
-                                             free_positions(state).map { |i| minimax mark(state, 1, i), false }.max
-                                           else
-                                             free_positions(state).map { |i| minimax mark(state, -1, i), true }.min
-                                           end
+      if maximizing
+        free_positions(state).map { |i| minimax mark(state, 1, i), false }.max
+      else
+        free_positions(state).map { |i| minimax mark(state, -1, i), true }.min
+      end
     end
 
     def self.free_positions(state)

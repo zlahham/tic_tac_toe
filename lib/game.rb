@@ -1,3 +1,5 @@
+require_relative 'board'
+
 module TicTacToe
   class Game
     attr_reader :board
@@ -8,8 +10,7 @@ module TicTacToe
       @current_player_id = 0
     end
 
-    def play(starting_player)
-      @current_player_id = starting_player
+    def play
       play_round until board.game_over
       return other_player if board.game_over == :winner
       :draw
@@ -46,13 +47,21 @@ module TicTacToe
 
     def valid_move?(move)
       x, y = move
+      numeric_check(x, y)
+      range_check(x, y)
+      occupied_check(x, y)
+    end
 
-      # Sanity checking
+    def numeric_check(x, y)
       return false unless x.is_a?(Numeric) && y.is_a?(Numeric)
-      return false if x < 0 || y < 0 || x > 2 || y > 2
+    end
 
-      # Check if occupied
-      return @board.cell_empty?(x,y)
+    def range_check(x, y)
+      return false if x < 0 || y < 0 || x > 2 || y > 2
+    end
+
+    def occupied_check(x, y)
+      @board.cell_empty?(x, y)
     end
   end
 end

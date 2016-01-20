@@ -1,4 +1,3 @@
-require_relative './tic_tac_toe.rb'
 require 'colorize'
 require 'curses'
 

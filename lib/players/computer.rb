@@ -1,6 +1,12 @@
+require_relative 'player'
+require_relative '../minimax'
+
 module TicTacToe
   class Computer < Player
     def next_move?(board)
+      CLI.clear
+      formatted_grid(board)
+      puts loading_animation
       make_coord(Minimax.next_best_step(board_to_minimax(board)))
     end
 
@@ -18,6 +24,14 @@ module TicTacToe
 
     def make_coord(val)
       [val % 3, val / 3]
+    end
+
+    def loading_animation
+      str = "\r#{name} is thinking"
+      10.times do
+        print str += ' 🤖'
+        sleep(0.1)
+      end
     end
   end
 end
