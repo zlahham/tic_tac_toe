@@ -1,7 +1,5 @@
 module TicTacToe
   describe Board do
-    TestCell = Struct.new(:value)
-
     let(:fake_board)    { Board.new(grid: 'grid') }
     let(:board_1)       { Board.new(grid: grid_1) }
     let(:board_2)       { Board.new(grid: grid_2) }
@@ -16,9 +14,9 @@ module TicTacToe
     let(:grid_4)        { [[x_cell, empty, empty], [y_cell, x_cell, y_cell], [y_cell, x_cell, x_cell]] }
     let(:grid_5)        { [[x_cell, y_cell, x_cell], [y_cell, x_cell, y_cell], [y_cell, x_cell, y_cell]] }
     let(:grid_6)        { [[x_cell, empty, empty], [y_cell, empty, empty], [y_cell, empty, empty]] }
-    let(:x_cell)        { TestCell.new('X') }
-    let(:y_cell)        { TestCell.new('Y') }
-    let(:empty)         { TestCell.new }
+    let(:x_cell)        { 'X' }
+    let(:y_cell)        { 'Y' }
+    let(:empty)         { '' }
 
     context '#initialize' do
       it 'initializes the board with a grid' do
@@ -49,7 +47,7 @@ module TicTacToe
     context '#set_cell' do
       it 'places the new cell value' do
         default_board.set_cell(0, 0, 'X')
-        expect(default_board.find_cell(0, 0).value).to eq 'X'
+        expect(default_board.find_cell(0, 0)).to eq 'X'
       end
     end
 
@@ -89,16 +87,6 @@ module TicTacToe
 
       it 'returns false when there is no winner or draw' do
         expect(board_6.game_over).to be false
-      end
-    end
-
-    context '#formatted_grid' do
-      it 'shows the formatted grid' do
-        expect(default_board.formatted_grid.length).to eq 3
-      end
-
-      it 'shows the formatted grid as an array' do
-        expect(default_board.formatted_grid.is_a?(Array)).to eq true
       end
     end
   end
