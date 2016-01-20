@@ -46,12 +46,6 @@ module TicTacToe
       end
     end
 
-    context '#find_cell_value' do
-      it 'returns the value of the cell' do
-        expect(default_board.find_cell_value(1, 0)).to eq ''
-      end
-    end
-
     context '#set_cell' do
       it 'places the new cell value' do
         default_board.set_cell(0, 0, 'X')
@@ -95,12 +89,6 @@ module TicTacToe
 
       it 'returns false when there is no winner or draw' do
         expect(board_6.game_over).to be false
-      end
-    end
-
-    context '#show_user_possibilities' do
-      it 'shows the user the possible moves with a grid' do
-        expect(default_board.show_user_possibilities).to eq "THESE ARE THE POSSIBILITIES:\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n".colorize(:yellow)
       end
     end
 

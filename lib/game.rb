@@ -25,7 +25,6 @@ module TicTacToe
     def final_move # TEST THIS
       if current_player.is_a? Computer
         a, b = computer_move
-        # current_player.loading_animation
       else
         a, b = human_move
       end
@@ -47,7 +46,7 @@ module TicTacToe
     def state # TEST THIS
       state = (0..2).flat_map do |r|
         (0..2).map do |c|
-          case _val = board.find_cell_value(c, r)
+          case _val = board.find_cell(c, r)
           when current_player.weapon then 1
           when other_player.weapon then -1
           else 0
@@ -64,10 +63,10 @@ module TicTacToe
 
     def play # TEST THIS
       puts messages(:d)
-      puts board.show_user_possibilities
+      puts "THESE ARE THE POSSIBILITIES:\n 1 | 2 | 3 \n-----------\n 4 | 5 | 6 \n-----------\n 7 | 8 | 9 \n".yellow
       keep_playing_until_over
       puts game_over_message
-      board.formatted_grid
+      formatted_grid(board)
     end
 
     def which_player_goes_first
@@ -87,18 +86,29 @@ module TicTacToe
 
     def check_cell_occupied(cell_coordinates)
       x, y = cell_coordinates
-      until board.find_cell(x, y).value.empty?
+      until board.cell_empty?(x, y)
         puts messages(:f)
         x, y = move_to_coord(gets.chomp)
       end
       [x, y]
     end
 
+    def formatted_grid(board)
+      board.grid.each do |row|
+        print row.map { |cell| cell.empty? ? '_'.light_yellow : color_x_o(cell) }.join('   ')
+        print "\n\n"
+      end
+    end
+
     private
+
+    def color_x_o(input)
+      input == 'X' ? input.blue : input.red
+    end
 
     def keep_playing_until_over
       until board.game_over
-        board.formatted_grid
+        formatted_grid(board)
         puts ask_for_player_move
         a, b = final_move
         board.set_cell(a, b, current_player.weapon)
