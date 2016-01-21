@@ -41,13 +41,13 @@ What helped me quite a lot throughout this project was to constantly play the Ti
 ---
 
 ###Future Plans
-- Test the MINIMAX properly
-- Clean up the runner file `lib/play_game.rb`
-- Seperate the CLI code from the business logic
-- Make a Web app version with Sinatra/Rails
-- Make the Command line version look nicer
-- Use a game engine such as Gosu
-- Make this into a Gem
+- [ ] Test the MINIMAX properly
+- [x] Clean up the runner file `lib/play_game.rb` => `bin/ttt`
+- [x] Seperate the CLI code from the business logic
+- [ ] Make a Web app version with Sinatra/Rails
+- [x] Make the Command line version look nicer
+- [ ] Use a game engine such as Gosu
+- [ ] Make this into a Gem
 
 ---
 
