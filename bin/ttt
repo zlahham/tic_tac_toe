@@ -6,7 +6,7 @@ require_relative '../lib/game_modes/player_vs_computer'
 require_relative '../lib/game_modes/computer_vs_computer'
 
 TicTacToe::CLIGame.new([
-  TicTacToe::GameModes::PlayerVsPlayer.new,
-  TicTacToe::GameModes::PlayerVsComputer.new,
-  TicTacToe::GameModes::ComputerVsComputer.new
-]).run
+                         TicTacToe::GameModes::PlayerVsPlayer.new,
+                         TicTacToe::GameModes::PlayerVsComputer.new,
+                         TicTacToe::GameModes::ComputerVsComputer.new
+                       ]).run
