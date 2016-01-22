@@ -1,5 +1,6 @@
 module TicTacToe
   describe Board do
+    let(:default_board) { Board.new }
     let(:fake_board)    { Board.new(grid: 'grid') }
     let(:board_1)       { Board.new(grid: grid_1) }
     let(:board_2)       { Board.new(grid: grid_2) }
@@ -7,15 +8,14 @@ module TicTacToe
     let(:board_4)       { Board.new(grid: grid_4) }
     let(:board_5)       { Board.new(grid: grid_5) }
     let(:board_6)       { Board.new(grid: grid_6) }
-    let(:default_board) { Board.new }
-    let(:grid_1)        { [['', 'O', ''], ['', '', 'X'], ['', '', 'X']] }
-    let(:grid_2)        { [[x_cell, x_cell, x_cell], [y_cell, x_cell, y_cell], [y_cell, y_cell, empty]] }
-    let(:grid_3)        { [[x_cell, x_cell, empty], [y_cell, x_cell, y_cell], [y_cell, x_cell, empty]] }
-    let(:grid_4)        { [[x_cell, empty, empty], [y_cell, x_cell, y_cell], [y_cell, x_cell, x_cell]] }
-    let(:grid_5)        { [[x_cell, y_cell, x_cell], [y_cell, x_cell, y_cell], [y_cell, x_cell, y_cell]] }
-    let(:grid_6)        { [[x_cell, empty, empty], [y_cell, empty, empty], [y_cell, empty, empty]] }
+    let(:grid_1)        { [[empty, o_cell, empty], [empty, empty, x_cell], [empty, empty, x_cell]] }
+    let(:grid_2)        { [[x_cell, x_cell, x_cell], [o_cell, x_cell, o_cell], [o_cell, o_cell, empty]] }
+    let(:grid_3)        { [[x_cell, x_cell, empty], [o_cell, x_cell, o_cell], [o_cell, x_cell, empty]] }
+    let(:grid_4)        { [[x_cell, empty, empty], [o_cell, x_cell, o_cell], [o_cell, x_cell, x_cell]] }
+    let(:grid_5)        { [[x_cell, o_cell, x_cell], [o_cell, x_cell, o_cell], [o_cell, x_cell, o_cell]] }
+    let(:grid_6)        { [[x_cell, empty, empty], [o_cell, empty, empty], [o_cell, empty, empty]] }
     let(:x_cell)        { 'X' }
-    let(:y_cell)        { 'Y' }
+    let(:o_cell)        { 'O' }
     let(:empty)         { '' }
 
     context '#initialize' do
