@@ -47,16 +47,16 @@ module TicTacToe
 
     def valid_move?(move)
       x, y = move
-      numeric_check(x, y)
-      range_check(x, y)
-      occupied_check(x, y)
+      numeric?(x, y)
+      range?(x, y)
+      occupied?(x, y)
     end
 
     def numeric?(x, y)
       return false unless x.is_a?(Numeric) && y.is_a?(Numeric)
     end
 
-    def range_check(x, y)
+    def range?(x, y)
       return false if x < 0 || y < 0 || x > 2 || y > 2
     end
 
