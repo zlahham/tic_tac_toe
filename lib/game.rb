@@ -38,11 +38,8 @@ module TicTacToe
 
     def ask_a_valid_move(player)
       move = player.next_move?(@board)
-      if valid_move?(move)
-        move
-      else
-        ask_a_valid_move(player)
-      end
+      if valid_move?(move) then move
+      else ask_a_valid_move(player) end
     end
 
     def valid_move?(move)
