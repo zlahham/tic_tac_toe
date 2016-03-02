@@ -5,7 +5,7 @@ module TicTacToe
     attr_reader :board
 
     def initialize(player_1, player_2, board = Board.new)
-      @players = [player_1, player_2]
+      @players = player_1, player_2
       @board = board
       @current_player_id = 0
     end
@@ -38,29 +38,26 @@ module TicTacToe
 
     def ask_a_valid_move(player)
       move = player.next_move?(@board)
-      if valid_move?(move)
-        move
-      else
-        ask_a_valid_move(player)
-      end
+      if valid_move?(move) then move
+      else ask_a_valid_move(player) end
     end
 
     def valid_move?(move)
       x, y = move
-      numeric_check(x, y)
-      range_check(x, y)
-      occupied_check(x, y)
+      numeric?(x, y)
+      range?(x, y)
+      occupied?(x, y)
     end
 
-    def numeric_check(x, y)
+    def numeric?(x, y)
       return false unless x.is_a?(Numeric) && y.is_a?(Numeric)
     end
 
-    def range_check(x, y)
+    def range?(x, y)
       return false if x < 0 || y < 0 || x > 2 || y > 2
     end
 
-    def occupied_check(x, y)
+    def occupied?(x, y)
       @board.cell_empty?(x, y)
     end
   end
