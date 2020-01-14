@@ -81,6 +81,10 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    sorbet (0.5.5247)
+      sorbet-static (= 0.5.5247)
+    sorbet-runtime (0.5.5247)
+    sorbet-static (0.5.5247-universal-darwin-14)
     sync (0.5.0)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
@@ -101,9 +105,11 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   rspec
+  sorbet
+  sorbet-runtime
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.2
