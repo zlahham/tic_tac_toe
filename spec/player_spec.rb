@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   describe Player do
     subject { Player.new(name: 'Zaid', weapon: 'X') }

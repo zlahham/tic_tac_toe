@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../cli/cli'
 require_relative 'player'
 
@@ -20,6 +22,7 @@ module TicTacToe
       next_move = gets.chomp
 
       return MAPPING[next_move] if MAPPING[next_move]
+
       CLI.clear
       puts 'You choosen an invalid move'
       next_valid_move?(board)

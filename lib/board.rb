@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   class Board
     attr_reader :grid
@@ -17,6 +19,7 @@ module TicTacToe
     def game_over
       return :winner if winner?
       return :draw   if draw?
+
       false
     end
 

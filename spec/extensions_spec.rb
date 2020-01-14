@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 describe Array do
   let(:sample_1) { ['', 1, '', Object.new, :a] }
   let(:sample_2) { ['a', 1, 'b', Object.new, :a] }
   let(:sample_3) { ['X', 'X', ''] }
-  let(:sample_4) { %w(A) * 3 }
+  let(:sample_4) { %w[A] * 3 }
 
   context '#all_empty?' do
     it 'returns true if all elements of the Array are empty' do

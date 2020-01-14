@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   module Minimax
     INITIAL_STATE = [0, 0, 0, 0, 0, 0, 0, 0, 0].freeze

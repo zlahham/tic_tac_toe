@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'board'
 
 module TicTacToe
@@ -13,6 +15,7 @@ module TicTacToe
     def play
       play_round until board.game_over
       return other_player if board.game_over == :winner
+
       :draw
     end
 

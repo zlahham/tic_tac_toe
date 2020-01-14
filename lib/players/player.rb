@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   class Player
     attr_reader :name, :weapon

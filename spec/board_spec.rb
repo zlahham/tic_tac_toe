@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   describe Board do
     let(:default_board) { Board.new }

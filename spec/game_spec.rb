@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicTacToe
   describe Game do
     let(:player_1) { Player.new(name: 'Zaid', weapon: 'X') }
