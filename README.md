@@ -1,6 +1,6 @@
 ##TicTacToe in Ruby
 
-[![Build Status](https://travis-ci.org/zlahham/tic_tac_toe.svg?branch=master)](https://travis-ci.org/zlahham/tic_tac_toe)
+![](https://github.com/zlahham/tic_tac_toe/workflows/Lint,%20Build%20&%20Test/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/zlahham/tic_tac_toe/badge.svg?branch=master&service=github)](https://coveralls.io/github/zlahham/tic_tac_toe?branch=master)
 
 Summary
