@@ -3,7 +3,7 @@
 module TicTacToe
   module Minimax
     INITIAL_STATE = [0, 0, 0, 0, 0, 0, 0, 0, 0].freeze
-    @@cache = {}
+    @cache = {}
 
     def self.next_best_step(state)
       outcomes = free_positions(state).map do |i|
@@ -22,7 +22,7 @@ module TicTacToe
     end
 
     def self.minimax(state, maximizing)
-      @@cache[hash(state, maximizing)] ||= calculate_minimax(state, maximizing)
+      @cache[hash(state, maximizing)] ||= calculate_minimax(state, maximizing)
     end
 
     def self.calculate_minimax(state, maximizing)
@@ -38,7 +38,7 @@ module TicTacToe
     end
 
     def self.free_positions(state)
-      state.each_with_index.select { |mark, _i| mark == 0 }.map { |_mark, i| i }
+      state.each_with_index.select { |mark, _i| mark.zero? }.map { |_mark, i| i }
     end
 
     def self.mark(state, value, index)
@@ -77,7 +77,7 @@ module TicTacToe
       else
         next_move = next_best_step(state)
         next_state = mark(state, 1, next_move)
-        test_play next_state.map { |x| x * - 1 }
+        test_play(next_state.map { |x| x * - 1 })
       end
     end
   end

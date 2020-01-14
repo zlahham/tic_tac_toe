@@ -8,12 +8,12 @@ module TicTacToe
       @grid = options.fetch(:grid, grid_shape)
     end
 
-    def find_cell(x, y)
-      grid[y][x]
+    def find_cell(x_coord, y_coord)
+      grid[y_coord][x_coord]
     end
 
-    def set_cell(x, y, input)
-      grid[y][x] = input
+    def set_cell(x_coord, y_coord, input)
+      grid[y_coord][x_coord] = input
     end
 
     def game_over
@@ -23,8 +23,8 @@ module TicTacToe
       false
     end
 
-    def cell_empty?(x, y)
-      find_cell(x, y).empty?
+    def cell_empty?(x_coord, y_coord)
+      find_cell(x_coord, y_coord).empty?
     end
 
     private

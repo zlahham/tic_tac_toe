@@ -6,8 +6,8 @@ module TicTacToe
   class Game
     attr_reader :board
 
-    def initialize(player_1, player_2, board = Board.new)
-      @players = [player_1, player_2]
+    def initialize(player_one, player_two, board = Board.new)
+      @players = [player_one, player_two]
       @board = board
       @current_player_id = 0
     end
@@ -36,7 +36,7 @@ module TicTacToe
     private
 
     def swap_players
-      @current_player_id = @current_player_id == 0 ? 1 : 0
+      @current_player_id = @current_player_id.zero? ? 1 : 0
     end
 
     def ask_a_valid_move(player)
@@ -55,16 +55,16 @@ module TicTacToe
       occupied_check(x, y)
     end
 
-    def numeric_check(x, y)
-      return false unless x.is_a?(Numeric) && y.is_a?(Numeric)
+    def numeric_check(x_coord, y_coord)
+      return false unless x_coord.is_a?(Numeric) && y_coord.is_a?(Numeric)
     end
 
-    def range_check(x, y)
-      return false if x < 0 || y < 0 || x > 2 || y > 2
+    def range_check(x_coord, y_coord)
+      return false if x_coord.negative? || y_coord.negative? || x_coord > 2 || y_coord > 2
     end
 
-    def occupied_check(x, y)
-      @board.cell_empty?(x, y)
+    def occupied_check(x_coord, y_coord)
+      @board.cell_empty?(x_coord, y_coord)
     end
   end
 end

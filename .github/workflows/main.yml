@@ -1,0 +1,38 @@
+name: Lint, Build & Test
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.3
+    - name: Install Dependancies
+      run: |
+        gem install bundler -N
+        gem install rubocop -N
+    - name: Run Linting
+      run: |
+        rubocop
+
+  build_and_test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.3
+    - name: Install Dependancies
+      run: |
+        gem install bundler -N
+        bundle install --jobs 4 --retry 3
+    - name: Run Tests
+      run: |
+        bundle exec rspec

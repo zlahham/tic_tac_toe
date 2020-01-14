@@ -6,6 +6,9 @@ Metrics/ClassLength:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**.rb'
 
 AllCops:
   Exclude:

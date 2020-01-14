@@ -43,7 +43,7 @@ module TicTacToe
       puts "\nWould you like to play again?"
       puts '[Y/n]'.yellow
       ask_to_play_again = gets.chomp.downcase
-      ask_to_play_again == 'n' || ask_to_play_again == 'no' ? false : true
+      ask_to_play_again != 'n'
     end
   end
 end
