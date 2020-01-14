@@ -1,11 +1,11 @@
-name: Ruby
+name: Build & Test
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v1
