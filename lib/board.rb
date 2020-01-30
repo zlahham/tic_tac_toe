@@ -6,7 +6,7 @@ module TicTacToe
     attr_reader :grid
 
     def initialize(options = {})
-      @grid = options.fetch(:grid, grid_shape)
+      @grid = options.fetch(:grid,   grid_shape)
     end
 
     def find_cell(x_coord, y_coord)
